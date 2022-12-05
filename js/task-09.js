@@ -11,7 +11,7 @@ function getRandomHexColor() {
 }
 
 changeCl.addEventListener("click", (e) => {
-  e.currentTarget.value = getRandomHexColor();
-  document.body.style.backgroundColor = `${e.currentTarget.value}`;
-  cl.textContent = e.currentTarget.value;
+  const randomColor = getRandomHexColor();
+  document.body.style.backgroundColor = `${randomColor}`;
+  cl.textContent = randomColor;
 });

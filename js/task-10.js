@@ -20,26 +20,29 @@
 const create = document.querySelector("[data-create]");
 const destroy = document.querySelector("[data-destroy]");
 const boxes = document.querySelector("#boxes");
-
+const input = document.querySelector("#controls input");
+let size = 30;
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 function createBoxes(amount) {
-  amount = document.querySelector("#controls input").value;
+  amount = input.value;
   const boxesArr = [];
-  const defaultSize = 30;
-  for (let i = 0; i < amount; i++) {
-    let size = defaultSize + i * 10;
-    let div = document.createElement("div");
-    let colorValue = getRandomHexColor();
+
+  for (let i = 1; i <= amount; i++) {
+    size += 10;
+    const div = document.createElement("div");
+    const colorValue = getRandomHexColor();
     div.style.cssText = `width: ${size}px; height: ${size}px; background-color: ${colorValue}`;
     boxesArr.push(div);
   }
   boxes.append(...boxesArr);
 }
 function destroyBoxes() {
+  input.value = "";
   boxes.innerHTML = "";
+  size = 30;
 }
 
 create.addEventListener("click", createBoxes);
